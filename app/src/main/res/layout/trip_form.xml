@@ -3,27 +3,29 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/background_form_color"
     android:padding="16dp">
 
     <!-- Título -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="@color/white"
         android:text="Crear Nuevo Viaje"
-        android:textSize="24sp"
-        android:textStyle="bold"
+        android:textSize="30sp"
+        android:textStyle="italic"
         android:gravity="center" />
 
     <!-- Campo de fecha de inicio -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Fecha de Inicio" />
 
     <Button
         android:id="@+id/toggleStartDateButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/rounded_button"
+        android:padding="5dp"
+        android:layout_margin="30dp"
+        android:textColor="@color/white"
         android:text="Seleccionar Fecha de Inicio" />
 
     <DatePicker
@@ -33,15 +35,15 @@
         android:visibility="gone" />
 
     <!-- Campo de fecha de fin -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Fecha de Fin" />
 
     <Button
         android:id="@+id/toggleEndDateButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/rounded_button"
+        android:textColor="@color/white"
+        android:padding="5dp"
+        android:layout_margin="30dp"
         android:text="Seleccionar Fecha de Fin" />
 
     <DatePicker
@@ -52,20 +54,28 @@
 
     <!-- Campo de texto para el destino -->
     <TextView
+        android:gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/white"
         android:text="Destino" />
+
     <EditText
         android:id="@+id/destinationEditText"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Ingrese el destino" />
+        android:layout_height="44dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/text"
+        android:radius="16dp"
+        android:textColor="@color/white" />
 
-    <!-- Botón para crear el viaje -->
     <Button
         android:id="@+id/createTripButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_margin="30dp"
+        android:background="@drawable/rounded_button"
+        android:textColor="@color/white"
+        android:padding="10dp"
         android:text="Crear Viaje" />
 </LinearLayout>
