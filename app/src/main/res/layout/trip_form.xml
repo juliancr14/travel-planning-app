@@ -19,20 +19,36 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Fecha de Inicio" />
+
+    <Button
+        android:id="@+id/toggleStartDateButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Seleccionar Fecha de Inicio" />
+
     <DatePicker
         android:id="@+id/startDatePicker"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:visibility="gone" />
 
     <!-- Campo de fecha de fin -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Fecha de Fin" />
+
+    <Button
+        android:id="@+id/toggleEndDateButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Seleccionar Fecha de Fin" />
+
     <DatePicker
         android:id="@+id/endDatePicker"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:visibility="gone" />
 
     <!-- Campo de texto para el destino -->
     <TextView
