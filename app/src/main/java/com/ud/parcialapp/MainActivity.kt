@@ -1,12 +1,16 @@
 package com.ud.parcialapp
 
 import Trip
+import android.app.Activity
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContract
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
@@ -16,18 +20,33 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.core.app.ActivityOptionsCompat
 import com.ud.parcialapp.ui.theme.ParcialAPPTheme
 import java.time.LocalDate
 
 class MainActivity : ComponentActivity() {
+    private lateinit var tripLauncher: ActivityResultLauncher<Intent>
+    private val trips = mutableStateListOf<Trip>() // Lista de viajes
+
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+
+        // Registramos el launcher para recibir el resultado
+        tripLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                val trip: Trip? = result.data?.getSerializableExtra("trip") as? Trip
+                trip?.let {
+                    trips.add(it) // Agregar el nuevo viaje a la lista
+                }
+            }
+        }
+
         setContent {
             ParcialAPPTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    TripsScreen(modifier = Modifier.padding(innerPadding))
+                    TripsScreen(modifier = Modifier.padding(innerPadding), tripLauncher = tripLauncher, trips = trips)
                 }
             }
         }
@@ -37,15 +56,8 @@ class MainActivity : ComponentActivity() {
 @RequiresApi(Build.VERSION_CODES.O)
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun TripsScreen(modifier: Modifier = Modifier) {
+fun TripsScreen(modifier: Modifier = Modifier, tripLauncher: ActivityResultLauncher<Intent>, trips: List<Trip>) {
     var destination by remember { mutableStateOf("") }
-    val trips = remember {
-        mutableStateListOf(
-            Trip(1, LocalDate.parse("2024-09-20"), LocalDate.parse("2024-09-30"), "Cali"),
-            Trip(2, LocalDate.parse("2024-10-20"), LocalDate.parse("2024-10-30"), "Medellín"),
-            Trip(3, LocalDate.parse("2024-11-20"), LocalDate.parse("2024-11-30"), "Bucaramanga")
-        )
-    }
 
     Column(modifier = modifier.padding(16.dp)) {
         Text(text = "Mis Viajes", style = MaterialTheme.typography.headlineMedium)
@@ -83,11 +95,10 @@ fun TripsScreen(modifier: Modifier = Modifier) {
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        // Usar LocalContext aquí
         val context = LocalContext.current
         Button(onClick = {
             val intent = Intent(context, TripFormActivity::class.java)
-            context.startActivity(intent)
+            tripLauncher.launch(intent) // Usar el launcher para iniciar la actividad
         }) {
             Text("Agregar")
         }
@@ -99,6 +110,16 @@ fun TripsScreen(modifier: Modifier = Modifier) {
 @Composable
 fun TripsScreenPreview() {
     ParcialAPPTheme {
-        TripsScreen()
+        TripsScreen(tripLauncher = object : ActivityResultLauncher<Intent>() {
+            override fun launch(input: Intent) {}
+            override val contract: ActivityResultContract<Intent, *>
+                get() = TODO("Not yet implemented")
+
+            override fun launch(input: Intent, options: ActivityOptionsCompat?) {
+                TODO("Not yet implemented")
+            }
+
+            override fun unregister() {}
+        }, trips = emptyList())
     }
 }
