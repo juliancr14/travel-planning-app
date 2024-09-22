@@ -1,127 +1,206 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp">
+    android:orientation="vertical">
 
+    <!-- Título -->
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="58dp"
+        android:gravity="center"
+        android:padding="16dp"
         android:text="Mis Viajes"
         android:textSize="24sp"
         android:textStyle="bold" />
 
+    <!-- Layout de búsqueda de viajes -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:orientation="horizontal"
-        android:layout_marginTop="16dp">
+        android:padding="16dp">
 
         <EditText
+            android:id="@+id/destino_txt"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:hint="Destino" />
 
         <Button
+            android:id="@+id/btnBuscar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Buscar" />
     </LinearLayout>
 
-    <LinearLayout
+    <!-- Scroll para mostrar las tarjetas de viajes -->
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginTop="16dp">
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
-        <TextView
-            android:layout_width="wrap_content"
+        <!-- Layout donde se agregarán las tarjetas -->
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="1"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            android:orientation="vertical"
+            android:padding="16dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Fecha inicio: 20 Septiembre" />
+            <!-- Tarjeta del viaje 1 -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                card_view:cardCornerRadius="8dp"
+                card_view:cardElevation="4dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Fecha fin: 30 Septiembre" />
+                <!-- Contenido de la tarjeta -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Destino: Cali" />
-    </LinearLayout>
+                    <!-- Destino del viaje -->
+                    <TextView
+                        android:id="@+id/destino_text1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="8dp"
+                        android:text="Destino: París"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginTop="16dp">
+                    <!-- Fechas del viaje -->
+                    <TextView
+                        android:id="@+id/fechas_text1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="8dp"
+                        android:text="Fechas: 15 Septiembre 2024 - 25 Septiembre 2024"
+                        android:textSize="16sp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="2"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+                    <!-- Duración del viaje -->
+                    <TextView
+                        android:id="@+id/duracion_text1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Duración: 10 días"
+                        android:textColor="@android:color/darker_gray"
+                        android:textSize="16sp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Fecha inicio: 20 Octubre" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Fecha fin: 30 Octubre" />
+            <!-- Tarjeta del viaje 2 -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                card_view:cardCornerRadius="8dp"
+                card_view:cardElevation="4dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Destino: Medellin" />
-    </LinearLayout>
+                <!-- Contenido de la tarjeta -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginTop="16dp">
+                    <!-- Destino del viaje -->
+                    <TextView
+                        android:id="@+id/destino_text2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="8dp"
+                        android:text="Destino: Roma"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="3"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+                    <!-- Fechas del viaje -->
+                    <TextView
+                        android:id="@+id/fechas_text2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="8dp"
+                        android:text="Fechas: 5 Octubre 2024 - 12 Octubre 2024"
+                        android:textSize="16sp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Fecha inicio: 20 Noviembre" />
+                    <!-- Duración del viaje -->
+                    <TextView
+                        android:id="@+id/duracion_text2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Duración: 7 días"
+                        android:textColor="@android:color/darker_gray"
+                        android:textSize="16sp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Fecha fin: 30 Noviembre" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Destino: Bucaramanga" />
-    </LinearLayout>
+            <!-- Tarjeta del viaje 3 -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                card_view:cardCornerRadius="8dp"
+                card_view:cardElevation="4dp">
 
+                <!-- Contenido de la tarjeta -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <!-- Destino del viaje -->
+                    <TextView
+                        android:id="@+id/destino_text3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="8dp"
+                        android:text="Destino: Tokio"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <!-- Fechas del viaje -->
+                    <TextView
+                        android:id="@+id/fechas_text3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="8dp"
+                        android:text="Fechas: 1 Noviembre 2024 - 10 Noviembre 2024"
+                        android:textSize="16sp" />
+
+                    <!-- Duración del viaje -->
+                    <TextView
+                        android:id="@+id/duracion_text3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Duración: 9 días"
+                        android:textColor="@android:color/darker_gray"
+                        android:textSize="16sp" />
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- Footer con botón de agregar viaje -->
     <Button
-        android:layout_width="wrap_content"
+        android:id="@+id/btnAgregarViaje"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Agregar"
-        android:layout_marginTop="16dp"
-        android:layout_gravity="center" />
+        android:layout_margin="16dp"
+        android:backgroundTint="@color/purple_500"
+        android:padding="12dp"
+        android:text="Agregar un viaje"
+        android:textColor="@android:color/white"
+        android:textSize="18sp" />
 
 </LinearLayout>
