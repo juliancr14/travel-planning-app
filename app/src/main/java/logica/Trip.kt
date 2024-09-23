@@ -4,7 +4,7 @@ import java.io.Serializable
 import java.time.LocalDate
 import java.time.temporal.ChronoUnit
 
-class Trip(
+data class Trip(
     val id: Int = (1..100).random(), // Genera un ID aleatorio si no se pasa uno
     val startDate: LocalDate,
     val endDate: LocalDate,
@@ -23,12 +23,13 @@ class Trip(
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
-    fun isDateInRange(date: LocalDate): Boolean {
-        return !date.isBefore(startDate) && !date.isAfter(endDate)
+    fun editTrip(newStartDate: LocalDate, newEndDate: LocalDate, newDestination: String): Trip {
+        return Trip(
+            id = this.id, // Mantiene el mismo ID
+            startDate = newStartDate,
+            endDate = newEndDate,
+            destination = newDestination
+        )
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
-    fun tripDetails(): String {
-        return "Viaje a $destination del $startDate al $endDate (Duración: ${tripDuration()} días)"
-    }
 }

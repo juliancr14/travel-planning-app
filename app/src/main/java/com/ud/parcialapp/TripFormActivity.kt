@@ -23,6 +23,7 @@ class TripFormActivity : ComponentActivity() {
 
     private var startDate: LocalDate? = null
     private var endDate: LocalDate? = null
+    private var tripToEdit: Trip? = null
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,13 +36,25 @@ class TripFormActivity : ComponentActivity() {
         destinationEditText = findViewById(R.id.destinationEditText)
         createTripButton = findViewById(R.id.createTripButton)
 
+        // Revisar si estamos en modo de edición
+        tripToEdit = intent.getSerializableExtra("trip") as? Trip
+        tripToEdit?.let {
+            // Si estamos editando un viaje, rellenamos los campos con los datos existentes
+            startDate = it.startDate
+            endDate = it.endDate
+            destinationEditText.setText(it.destination)
+
+            startDateButton.text = "Fecha de Inicio: $startDate"
+            endDateButton.text = "Fecha de Fin: $endDate"
+            createTripButton.text = "Actualizar Viaje"  // Cambiamos el texto del botón
+        }
+
         // Configurar botón para seleccionar fecha de inicio
         startDateButton.setOnClickListener {
             showDatePicker { year, month, dayOfMonth ->
                 startDate = LocalDate.of(year, month + 1, dayOfMonth) // month es 0-based, por eso sumamos 1
                 startDateButton.text = "Fecha de Inicio: $startDate"
-                Log.d("TripFormActivity", "Fecha de Inicio seleccionada: $startDate") // Log de la fecha de inicio
-
+                Log.d("TripFormActivity", "Fecha de Inicio seleccionada: $startDate")
             }
         }
 
@@ -50,36 +63,38 @@ class TripFormActivity : ComponentActivity() {
             showDatePicker { year, month, dayOfMonth ->
                 endDate = LocalDate.of(year, month + 1, dayOfMonth)
                 endDateButton.text = "Fecha de Fin: $endDate"
-                Log.d("TripFormActivity", "Fecha de Fin seleccionada: $endDate") // Log de la fecha de fin
+                Log.d("TripFormActivity", "Fecha de Fin seleccionada: $endDate")
             }
         }
 
-        // Configurar el botón para crear un viaje
+        // Configurar el botón para crear o actualizar un viaje
         createTripButton.setOnClickListener {
             val destination = destinationEditText.text.toString()
 
             // Validar que los campos estén completos
             if (startDate != null && endDate != null && destination.isNotEmpty()) {
-                val trip = Trip(
-                    id = (1..100).random(),
-                    startDate = startDate!!,
-                    endDate = endDate!!,
-                    destination = destination
-                )
-                // Log del destino y el viaje creado
+                val trip = tripToEdit?.editTrip(startDate!!, endDate!!, destination)
+                    ?: Trip(
+                        id = (1..100).random(),
+                        startDate = startDate!!,
+                        endDate = endDate!!,
+                        destination = destination
+                    )
+
+                // Log de edición o creación
                 Log.d("TripFormActivity", "salida: $startDate")
                 Log.d("TripFormActivity", "regreso: $endDate")
                 Log.d("TripFormActivity", "Destino: $destination")
-                Log.d("TripFormActivity", "Viaje creado: ${trip.id}")
+                Log.d("TripFormActivity", "Viaje ${if (tripToEdit != null) "actualizado" else "creado"}: ${trip.id}")
 
-                // Devolver el objeto Trip a la actividad principal
-                val resultIntent = Intent()
-                resultIntent.putExtra("trip", trip)
+                // Devolver el objeto Trip actualizado o creado a la actividad principal
+                val resultIntent = Intent().apply {
+                    putExtra("trip", trip)
+                }
                 setResult(Activity.RESULT_OK, resultIntent)
-                finish() // Cerrar la actividad
+                finish()
             } else {
-                Log.d("TripFormActivity", "Datos incompletos: $startDate, $endDate, $destination") // Log de error
-                // Aquí puedes usar un Toast o un SnackBar
+                Log.d("TripFormActivity", "Datos incompletos: $startDate, $endDate, $destination")
             }
         }
     }
@@ -93,7 +108,7 @@ class TripFormActivity : ComponentActivity() {
 
         DatePickerDialog(this, { _: DatePicker, selectedYear: Int, selectedMonth: Int, selectedDay: Int ->
             onDateSelected(selectedYear, selectedMonth, selectedDay)
-            Log.d("TripFormActivity", "Fecha seleccionada: $selectedYear-${selectedMonth + 1}-$selectedDay") // Log de la fecha seleccionada
+            Log.d("TripFormActivity", "Fecha seleccionada: $selectedYear-${selectedMonth + 1}-$selectedDay")
         }, year, month, day).show()
     }
 }
