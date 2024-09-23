@@ -25,26 +25,30 @@ import androidx.compose.ui.unit.dp
 import androidx.core.app.ActivityOptionsCompat
 import com.ud.parcialapp.ui.theme.ParcialAPPTheme
 
+// Actividad principal de la aplicación que gestiona los viajes
 class MainActivity : ComponentActivity() {
-    private lateinit var tripLauncher: ActivityResultLauncher<Intent>
+    private lateinit var tripLauncher: ActivityResultLauncher<Intent> // Launcher para manejar el resultado de TripFormActivity
     private val trips = mutableStateListOf<Trip>() // Lista de viajes
-    private var searchQuery by mutableStateOf("") // Consulta de búsqueda
+    private var searchQuery by mutableStateOf("") // Consulta de búsqueda para filtrar viajes
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
+        enableEdgeToEdge() // Habilita el diseño de pantalla completa
 
-        // Registramos el launcher para recibir el resultado
+        // Registramos el launcher para recibir el resultado al agregar o eliminar un viaje
         tripLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == Activity.RESULT_OK) {
+                // Intentamos obtener un viaje y un ID de viaje eliminado del resultado
                 val trip: Trip? = result.data?.getSerializableExtra("trip") as? Trip
                 val deletedTripId: Int? = result.data?.getIntExtra("deleted_trip_id", -1)
+
+                // Agregar el nuevo viaje a la lista si se recibió uno
                 trip?.let {
-                    trips.add(it) // Agregar el nuevo viaje a la lista
+                    trips.add(it)
                 }
 
-                // Eliminar viaje de la lista si se recibió un ID
+                // Eliminar viaje de la lista si se recibió un ID válido
                 deletedTripId?.let {
                     if (it != -1) {
                         deleteTripById(it)
@@ -53,9 +57,11 @@ class MainActivity : ComponentActivity() {
             }
         }
 
+        // Configuración del contenido de la interfaz
         setContent {
             ParcialAPPTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+                    // Composición de la pantalla de viajes
                     TripsScreen(
                         modifier = Modifier.padding(innerPadding),
                         tripLauncher = tripLauncher,
@@ -68,12 +74,14 @@ class MainActivity : ComponentActivity() {
         }
     }
 
+    // Método para eliminar un viaje de la lista según su ID
     private fun deleteTripById(tripId: Int) {
         // Filtra la lista para eliminar el viaje con el ID correspondiente
         trips.removeIf { it.id == tripId }
     }
 }
 
+// Función composable que muestra la pantalla de viajes
 @RequiresApi(Build.VERSION_CODES.O)
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -84,6 +92,7 @@ fun TripsScreen(
     searchQuery: String,
     onSearchQueryChange: (String) -> Unit
 ) {
+    // Filtra los viajes según la consulta de búsqueda
     val filteredTrips = trips.filter { trip ->
         trip.destination.contains(searchQuery, ignoreCase = true)
     }
@@ -93,6 +102,7 @@ fun TripsScreen(
 
         Spacer(modifier = Modifier.height(16.dp))
 
+        // Campo de búsqueda
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween,
@@ -115,22 +125,25 @@ fun TripsScreen(
             modifier = Modifier.weight(1f) // Toma el espacio restante
         ) {
             items(filteredTrips) { trip ->
-                TripCard(trip, tripLauncher)
+                TripCard(trip, tripLauncher) // Componente para mostrar cada viaje
             }
         }
 
         Spacer(modifier = Modifier.height(16.dp))
 
+        // Botón para agregar un nuevo viaje
         val context = LocalContext.current
         Button(onClick = {
             val intent = Intent(context, TripFormActivity::class.java)
-            tripLauncher.launch(intent)
+            tripLauncher.launch(intent) // Lanzar TripFormActivity
         }) {
             Text("Agregar")
         }
     }
 }
 
+// Componente para mostrar la información de un viaje
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun TripCard(trip: Trip, tripLauncher: ActivityResultLauncher<Intent>) {
     val context = LocalContext.current
@@ -165,20 +178,23 @@ fun TripCard(trip: Trip, tripLauncher: ActivityResultLauncher<Intent>) {
                 }
             }
 
+            // Botón para ver los detalles del viaje
             Button(onClick = {
                 val intent = Intent(context, TripDetailsActivity::class.java)
                 intent.putExtra("trip", trip)
-                tripLauncher.launch(intent)
+                tripLauncher.launch(intent) // Lanzar TripDetailsActivity
             }) {
                 Text("Ver Detalles")
             }
 
             Spacer(modifier = Modifier.height(8.dp))
+            // Muestra la duración del viaje
             Text(text = "Duración: ${trip.tripDuration()} días", style = MaterialTheme.typography.bodyMedium)
         }
     }
 }
 
+// Vista previa de la pantalla de viajes
 @RequiresApi(Build.VERSION_CODES.O)
 @Preview(showBackground = true)
 @Composable
