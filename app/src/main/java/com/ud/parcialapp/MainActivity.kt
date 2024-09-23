@@ -25,8 +25,14 @@ import androidx.compose.ui.unit.dp
 import androidx.core.app.ActivityOptionsCompat
 import com.ud.parcialapp.ui.theme.ParcialAPPTheme
 
+interface TripProvider {
+    fun getTrips(): List<Trip>
+}
+
 // Actividad principal de la aplicación que gestiona los viajes
 class MainActivity : ComponentActivity() {
+    // Implementación del método
+    fun getTrips(): List<Trip> = trips.toList()
     private lateinit var tripLauncher: ActivityResultLauncher<Intent> // Launcher para manejar el resultado de TripFormActivity
     private val trips = mutableStateListOf<Trip>() // Lista de viajes
     private var searchQuery by mutableStateOf("") // Consulta de búsqueda para filtrar viajes

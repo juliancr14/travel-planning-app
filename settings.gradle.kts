@@ -21,4 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "parcialAPP"
 include(":app")
- 
+include(":app:test")
