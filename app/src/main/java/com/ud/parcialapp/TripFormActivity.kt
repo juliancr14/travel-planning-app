@@ -10,6 +10,7 @@ import android.util.Log
 import android.widget.Button
 import android.widget.DatePicker
 import android.widget.EditText
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.annotation.RequiresApi
 import java.time.LocalDate
@@ -54,7 +55,8 @@ class TripFormActivity : ComponentActivity() {
             showDatePicker { year, month, dayOfMonth ->
                 startDate = LocalDate.of(year, month + 1, dayOfMonth) // month es 0-based, por eso sumamos 1
                 startDateButton.text = "Fecha de Inicio: $startDate"
-                Log.d("TripFormActivity", "Fecha de Inicio seleccionada: $startDate")
+                Log.d("TripFormActivity", "Fecha de Inicio seleccionada: $startDate") // Log de la fecha de inicio
+
             }
         }
 
@@ -63,7 +65,7 @@ class TripFormActivity : ComponentActivity() {
             showDatePicker { year, month, dayOfMonth ->
                 endDate = LocalDate.of(year, month + 1, dayOfMonth)
                 endDateButton.text = "Fecha de Fin: $endDate"
-                Log.d("TripFormActivity", "Fecha de Fin seleccionada: $endDate")
+                Log.d("TripFormActivity", "Fecha de Fin seleccionada: $endDate") // Log de la fecha de fin
             }
         }
 
@@ -94,7 +96,8 @@ class TripFormActivity : ComponentActivity() {
                 setResult(Activity.RESULT_OK, resultIntent)
                 finish()
             } else {
-                Log.d("TripFormActivity", "Datos incompletos: $startDate, $endDate, $destination")
+                Log.d("TripFormActivity", "Datos incompletos: $startDate, $endDate, $destination") // Log de error
+                // Aquí puedes usar un Toast o un SnackBar
             }
         }
     }
