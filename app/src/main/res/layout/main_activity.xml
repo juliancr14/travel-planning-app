@@ -29,12 +29,6 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:hint="Destino" />
-
-        <Button
-            android:id="@+id/btnBuscar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Buscar" />
     </LinearLayout>
 
     <!-- Scroll para mostrar las tarjetas de viajes -->

@@ -1,0 +1,65 @@
+com.ud.test-ui-tooling-release-0 C:\Users\USER\.gradle\caches\transforms-4\0c94b407fe2d00540c264bf12581e871\transformed\ui-tooling-release\res
+com.ud.test-lifecycle-livedata-core-2.8.5-1 C:\Users\USER\.gradle\caches\transforms-4\0d3a14fb791ab89fb0ab1da9b94cf164\transformed\lifecycle-livedata-core-2.8.5\res
+com.ud.test-ui-test-release-2 C:\Users\USER\.gradle\caches\transforms-4\0e98b6358f27e7a72fdfadab25238d4b\transformed\ui-test-release\res
+com.ud.test-fragment-1.5.4-3 C:\Users\USER\.gradle\caches\transforms-4\0e9944e1680908717e18fb656d5b73e4\transformed\fragment-1.5.4\res
+com.ud.test-coordinatorlayout-1.1.0-4 C:\Users\USER\.gradle\caches\transforms-4\13a16a45a9354f6c2c48eba82f7b3970\transformed\coordinatorlayout-1.1.0\res
+com.ud.test-activity-compose-1.9.2-5 C:\Users\USER\.gradle\caches\transforms-4\18b571f842130e6f54e9ea04d92035ce\transformed\activity-compose-1.9.2\res
+com.ud.test-savedstate-1.2.1-6 C:\Users\USER\.gradle\caches\transforms-4\1a1d185067934207dc6c4ff6d11b1203\transformed\savedstate-1.2.1\res
+com.ud.test-ui-tooling-data-release-7 C:\Users\USER\.gradle\caches\transforms-4\1c217ef6e5b657301e8c56f7ad6b52c2\transformed\ui-tooling-data-release\res
+com.ud.test-lifecycle-livedata-2.8.5-8 C:\Users\USER\.gradle\caches\transforms-4\1caf40a34e72115927f053fd7bc022a1\transformed\lifecycle-livedata-2.8.5\res
+com.ud.test-activity-ktx-1.9.2-9 C:\Users\USER\.gradle\caches\transforms-4\2994df38efa3d2ac375bc109bf8af650\transformed\activity-ktx-1.9.2\res
+com.ud.test-ui-unit-release-10 C:\Users\USER\.gradle\caches\transforms-4\325fd4a82437c3e5bce47857858230f0\transformed\ui-unit-release\res
+com.ud.test-activity-1.9.2-11 C:\Users\USER\.gradle\caches\transforms-4\39ef1c5267ccf2d5ead036e3e8fae343\transformed\activity-1.9.2\res
+com.ud.test-animation-release-12 C:\Users\USER\.gradle\caches\transforms-4\3fe8508bb38ae2fac951f40299787eae\transformed\animation-release\res
+com.ud.test-material-1.12.0-13 C:\Users\USER\.gradle\caches\transforms-4\45e21bda48218a482d2a78c364b783e9\transformed\material-1.12.0\res
+com.ud.test-core-1.13.1-14 C:\Users\USER\.gradle\caches\transforms-4\4a343689c26eeefefd5a327fdc1188b8\transformed\core-1.13.1\res
+com.ud.test-transition-1.5.0-15 C:\Users\USER\.gradle\caches\transforms-4\4d744b0143510bf20b617717b1745915\transformed\transition-1.5.0\res
+com.ud.test-lifecycle-runtime-compose-release-16 C:\Users\USER\.gradle\caches\transforms-4\56af777febad74063f73063de7404396\transformed\lifecycle-runtime-compose-release\res
+com.ud.test-lifecycle-viewmodel-savedstate-2.8.5-17 C:\Users\USER\.gradle\caches\transforms-4\590962db909099a7bb0c2fea6519ec3a\transformed\lifecycle-viewmodel-savedstate-2.8.5\res
+com.ud.test-annotation-experimental-1.4.1-18 C:\Users\USER\.gradle\caches\transforms-4\591f182e2a6e17fb34561f032fe03e87\transformed\annotation-experimental-1.4.1\res
+com.ud.test-lifecycle-livedata-core-ktx-2.8.5-19 C:\Users\USER\.gradle\caches\transforms-4\593da6e0325e12b4e0b303554f304490\transformed\lifecycle-livedata-core-ktx-2.8.5\res
+com.ud.test-cardview-1.0.0-20 C:\Users\USER\.gradle\caches\transforms-4\5a1e1cac7e18bdde6432ddcea07135ea\transformed\cardview-1.0.0\res
+com.ud.test-recyclerview-1.1.0-21 C:\Users\USER\.gradle\caches\transforms-4\5ed2511ecdbc13cb5bf9a20a00c2727d\transformed\recyclerview-1.1.0\res
+com.ud.test-appcompat-resources-1.7.0-22 C:\Users\USER\.gradle\caches\transforms-4\61b6d0c46281f985f3fb7f1218ceb3d6\transformed\appcompat-resources-1.7.0\res
+com.ud.test-core-runtime-2.2.0-23 C:\Users\USER\.gradle\caches\transforms-4\686d55f89d3a96328c42fbbf0d9a2a41\transformed\core-runtime-2.2.0\res
+com.ud.test-lifecycle-viewmodel-ktx-2.8.5-24 C:\Users\USER\.gradle\caches\transforms-4\6c0213237e893c80561d71a0a5eb2aa3\transformed\lifecycle-viewmodel-ktx-2.8.5\res
+com.ud.test-animation-core-release-25 C:\Users\USER\.gradle\caches\transforms-4\6d7f7653416913984dd28b6dff687ec2\transformed\animation-core-release\res
+com.ud.test-profileinstaller-1.3.1-26 C:\Users\USER\.gradle\caches\transforms-4\7349b681f10dd7c919ae674827e907dd\transformed\profileinstaller-1.3.1\res
+com.ud.test-drawerlayout-1.1.1-27 C:\Users\USER\.gradle\caches\transforms-4\745937953c1509060e90a5c84e4da5c3\transformed\drawerlayout-1.1.1\res
+com.ud.test-viewpager2-1.0.0-28 C:\Users\USER\.gradle\caches\transforms-4\751a2d5c243ac1202e2031236fd258d8\transformed\viewpager2-1.0.0\res
+com.ud.test-customview-poolingcontainer-1.0.0-29 C:\Users\USER\.gradle\caches\transforms-4\7658820944a531a5a1b181003fd42e98\transformed\customview-poolingcontainer-1.0.0\res
+com.ud.test-lifecycle-process-2.8.5-30 C:\Users\USER\.gradle\caches\transforms-4\78709bc456feb4304648033a375bf20f\transformed\lifecycle-process-2.8.5\res
+com.ud.test-core-1.5.0-31 C:\Users\USER\.gradle\caches\transforms-4\80c3a017590e8e0ab5ba36c0dc061809\transformed\core-1.5.0\res
+com.ud.test-ui-util-release-32 C:\Users\USER\.gradle\caches\transforms-4\819db95a31cd080b98f8e58ca0eaa4ac\transformed\ui-util-release\res
+com.ud.test-foundation-layout-release-33 C:\Users\USER\.gradle\caches\transforms-4\83a8a068b59be969cb4ff641b528689a\transformed\foundation-layout-release\res
+com.ud.test-ui-test-manifest-1.7.2-34 C:\Users\USER\.gradle\caches\transforms-4\8a6d631c738d880b35a3918ed52d5bdd\transformed\ui-test-manifest-1.7.2\res
+com.ud.test-ui-tooling-preview-release-35 C:\Users\USER\.gradle\caches\transforms-4\8c14528e719b9636011f58fd4217a07e\transformed\ui-tooling-preview-release\res
+com.ud.test-graphics-path-1.0.1-36 C:\Users\USER\.gradle\caches\transforms-4\8cfaa7f6bf9e01be7024961c98545827\transformed\graphics-path-1.0.1\res
+com.ud.test-ui-geometry-release-37 C:\Users\USER\.gradle\caches\transforms-4\9048ce6f6fb7c7a8eb811e941ec33a33\transformed\ui-geometry-release\res
+com.ud.test-constraintlayout-2.1.4-38 C:\Users\USER\.gradle\caches\transforms-4\928be8cbfc77583611416ae842ce1e35\transformed\constraintlayout-2.1.4\res
+com.ud.test-savedstate-ktx-1.2.1-39 C:\Users\USER\.gradle\caches\transforms-4\976ba9188a9a46644a14d61e8b208a26\transformed\savedstate-ktx-1.2.1\res
+com.ud.test-runtime-saveable-release-40 C:\Users\USER\.gradle\caches\transforms-4\a519971e032a50ff49ba1b1cd96d7683\transformed\runtime-saveable-release\res
+com.ud.test-material3-release-41 C:\Users\USER\.gradle\caches\transforms-4\a5fd5f2644c0b6bee6d7622d5f78366d\transformed\material3-release\res
+com.ud.test-ui-text-release-42 C:\Users\USER\.gradle\caches\transforms-4\ac1f164c2175b9dc2cfd46de65aaada9\transformed\ui-text-release\res
+com.ud.test-appcompat-1.7.0-43 C:\Users\USER\.gradle\caches\transforms-4\ace07136157f79b94d9488ef264d68d3\transformed\appcompat-1.7.0\res
+com.ud.test-ui-release-44 C:\Users\USER\.gradle\caches\transforms-4\ae829a43f159fde51fabb9768f5413d2\transformed\ui-release\res
+com.ud.test-material-release-45 C:\Users\USER\.gradle\caches\transforms-4\b1d4873b48ce9f584f7705393a47c394\transformed\material-release\res
+com.ud.test-ui-test-junit4-release-46 C:\Users\USER\.gradle\caches\transforms-4\b9f16a2c836b3799e8e24cc0ae308e11\transformed\ui-test-junit4-release\res
+com.ud.test-material-icons-core-release-47 C:\Users\USER\.gradle\caches\transforms-4\bbf07c21e036702899b671e548d1ea6d\transformed\material-icons-core-release\res
+com.ud.test-runtime-release-48 C:\Users\USER\.gradle\caches\transforms-4\bbf4eea397e8adbbba9b530979b10eb6\transformed\runtime-release\res
+com.ud.test-startup-runtime-1.1.1-49 C:\Users\USER\.gradle\caches\transforms-4\cb00f22b22d69a872aff5ddf061bc502\transformed\startup-runtime-1.1.1\res
+com.ud.test-emoji2-1.3.0-50 C:\Users\USER\.gradle\caches\transforms-4\db7d8d46acb00b1edf95dbf18a3bb6d1\transformed\emoji2-1.3.0\res
+com.ud.test-foundation-release-51 C:\Users\USER\.gradle\caches\transforms-4\e0521276ba2f07414b06373b4cd53c4e\transformed\foundation-release\res
+com.ud.test-material-ripple-release-52 C:\Users\USER\.gradle\caches\transforms-4\e0a5798ffe08cc99d11fbbe076f506bb\transformed\material-ripple-release\res
+com.ud.test-lifecycle-runtime-release-53 C:\Users\USER\.gradle\caches\transforms-4\e87231ba3239afc9dacacf0213b0345f\transformed\lifecycle-runtime-release\res
+com.ud.test-lifecycle-runtime-ktx-release-54 C:\Users\USER\.gradle\caches\transforms-4\efa82977ea8426159acc9e451d9d0369\transformed\lifecycle-runtime-ktx-release\res
+com.ud.test-lifecycle-viewmodel-release-55 C:\Users\USER\.gradle\caches\transforms-4\f251c1c87ce5ab7b9caa946eee66ebf3\transformed\lifecycle-viewmodel-release\res
+com.ud.test-ui-graphics-release-56 C:\Users\USER\.gradle\caches\transforms-4\f4b1df78e19a41dd1a06af25f0dcf83e\transformed\ui-graphics-release\res
+com.ud.test-emoji2-views-helper-1.3.0-57 C:\Users\USER\.gradle\caches\transforms-4\fa70e1167084b989b572e9f91c5749be\transformed\emoji2-views-helper-1.3.0\res
+com.ud.test-core-ktx-1.13.1-58 C:\Users\USER\.gradle\caches\transforms-4\ff9fe38df6c951addf0c386a2c1b0505\transformed\core-ktx-1.13.1\res
+com.ud.test-resValues-59 C:\Users\USER\OneDrive\Escritorio\UNIVERSIDAD DISTRITAL\OCTAVO SEMESTRE\PROGRAMACION POR COMPONENTES ASCII\Parcial\app\test\build\generated\res\resValues\debug
+com.ud.test-packageDebugResources-60 C:\Users\USER\OneDrive\Escritorio\UNIVERSIDAD DISTRITAL\OCTAVO SEMESTRE\PROGRAMACION POR COMPONENTES ASCII\Parcial\app\test\build\intermediates\incremental\debug\packageDebugResources\merged.dir
+com.ud.test-packageDebugResources-61 C:\Users\USER\OneDrive\Escritorio\UNIVERSIDAD DISTRITAL\OCTAVO SEMESTRE\PROGRAMACION POR COMPONENTES ASCII\Parcial\app\test\build\intermediates\incremental\debug\packageDebugResources\stripped.dir
+com.ud.test-debug-62 C:\Users\USER\OneDrive\Escritorio\UNIVERSIDAD DISTRITAL\OCTAVO SEMESTRE\PROGRAMACION POR COMPONENTES ASCII\Parcial\app\test\build\intermediates\merged_res\debug\mergeDebugResources
+com.ud.test-debug-63 C:\Users\USER\OneDrive\Escritorio\UNIVERSIDAD DISTRITAL\OCTAVO SEMESTRE\PROGRAMACION POR COMPONENTES ASCII\Parcial\app\test\src\debug\res
+com.ud.test-main-64 C:\Users\USER\OneDrive\Escritorio\UNIVERSIDAD DISTRITAL\OCTAVO SEMESTRE\PROGRAMACION POR COMPONENTES ASCII\Parcial\app\test\src\main\res
