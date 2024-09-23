@@ -13,6 +13,8 @@ import androidx.activity.result.contract.ActivityResultContract
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -108,50 +110,12 @@ fun TripsScreen(
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        // Mostrar viajes filtrados
-        filteredTrips.forEach { trip ->
-            Card(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(8.dp),
-                elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
-            ) {
-                Column(modifier = Modifier.padding(16.dp)) {
-                    // Encabezado con el destino
-                    Text(
-                        text = "Destino: ${trip.destination.uppercase()}",
-                        style = MaterialTheme.typography.headlineSmall,
-                        modifier = Modifier.padding(bottom = 8.dp)
-                    )
-
-                    // Detalles del viaje en una fila (Row)
-                    Row(
-                        modifier = Modifier.fillMaxWidth(),
-                        horizontalArrangement = Arrangement.SpaceBetween
-                    ) {
-                        Column(horizontalAlignment = Alignment.Start) {
-                            Text(text = "Fecha inicio:", style = MaterialTheme.typography.bodyMedium)
-                            Text(text = trip.startDate.toString(), style = MaterialTheme.typography.bodyMedium)
-                        }
-
-                        Column(horizontalAlignment = Alignment.End) {
-                            Text(text = "Fecha fin:", style = MaterialTheme.typography.bodyMedium)
-                            Text(text = trip.endDate.toString(), style = MaterialTheme.typography.bodyMedium)
-                        }
-                    }
-
-                    val context = LocalContext.current
-                    Button(onClick = {
-                        val intent = Intent(context, TripDetailsActivity::class.java)
-                        intent.putExtra("trip", trip)
-                        tripLauncher.launch(intent)
-                    }) {
-                        Text("Ver Detalles")
-                    }
-
-                    Spacer(modifier = Modifier.height(8.dp))
-                    Text(text = "Duración: ${trip.tripDuration()} días", style = MaterialTheme.typography.bodyMedium)
-                }
+        // Mostrar viajes filtrados en un LazyColumn para el scroll
+        LazyColumn(
+            modifier = Modifier.weight(1f) // Toma el espacio restante
+        ) {
+            items(filteredTrips) { trip ->
+                TripCard(trip, tripLauncher)
             }
         }
 
@@ -163,6 +127,54 @@ fun TripsScreen(
             tripLauncher.launch(intent)
         }) {
             Text("Agregar")
+        }
+    }
+}
+
+@Composable
+fun TripCard(trip: Trip, tripLauncher: ActivityResultLauncher<Intent>) {
+    val context = LocalContext.current
+
+    Card(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(8.dp),
+        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
+    ) {
+        Column(modifier = Modifier.padding(16.dp)) {
+            // Encabezado con el destino
+            Text(
+                text = "Destino: ${trip.destination.uppercase()}",
+                style = MaterialTheme.typography.headlineSmall,
+                modifier = Modifier.padding(bottom = 8.dp)
+            )
+
+            // Detalles del viaje en una fila (Row)
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                Column(horizontalAlignment = Alignment.Start) {
+                    Text(text = "Fecha inicio:", style = MaterialTheme.typography.bodyMedium)
+                    Text(text = trip.startDate.toString(), style = MaterialTheme.typography.bodyMedium)
+                }
+
+                Column(horizontalAlignment = Alignment.End) {
+                    Text(text = "Fecha fin:", style = MaterialTheme.typography.bodyMedium)
+                    Text(text = trip.endDate.toString(), style = MaterialTheme.typography.bodyMedium)
+                }
+            }
+
+            Button(onClick = {
+                val intent = Intent(context, TripDetailsActivity::class.java)
+                intent.putExtra("trip", trip)
+                tripLauncher.launch(intent)
+            }) {
+                Text("Ver Detalles")
+            }
+
+            Spacer(modifier = Modifier.height(8.dp))
+            Text(text = "Duración: ${trip.tripDuration()} días", style = MaterialTheme.typography.bodyMedium)
         }
     }
 }
