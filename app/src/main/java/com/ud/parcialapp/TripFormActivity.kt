@@ -10,6 +10,7 @@ import android.util.Log
 import android.widget.Button
 import android.widget.DatePicker
 import android.widget.EditText
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.annotation.RequiresApi
 import java.time.LocalDate
@@ -38,19 +39,28 @@ class TripFormActivity : ComponentActivity() {
         // Configurar botón para seleccionar fecha de inicio
         startDateButton.setOnClickListener {
             showDatePicker { year, month, dayOfMonth ->
-                startDate = LocalDate.of(year, month + 1, dayOfMonth) // month es 0-based, por eso sumamos 1
-                startDateButton.text = "Fecha de Inicio: $startDate"
-                Log.d("TripFormActivity", "Fecha de Inicio seleccionada: $startDate") // Log de la fecha de inicio
-
+                val selectedDate = LocalDate.of(year, month + 1, dayOfMonth)
+                if (selectedDate.isBefore(LocalDate.now())) {
+                    Toast.makeText(this, "La fecha de inicio no puede ser anterior a hoy.", Toast.LENGTH_SHORT).show()
+                } else {
+                    startDate = selectedDate
+                    startDateButton.text = "Fecha de Inicio: $startDate"
+                    Log.d("TripFormActivity", "Fecha de Inicio seleccionada: $startDate") // Log de la fecha de inicio
+                }
             }
         }
 
         // Configurar botón para seleccionar fecha de fin
         endDateButton.setOnClickListener {
             showDatePicker { year, month, dayOfMonth ->
-                endDate = LocalDate.of(year, month + 1, dayOfMonth)
-                endDateButton.text = "Fecha de Fin: $endDate"
-                Log.d("TripFormActivity", "Fecha de Fin seleccionada: $endDate") // Log de la fecha de fin
+                val selectedDate = LocalDate.of(year, month + 1, dayOfMonth)
+                if (startDate != null && selectedDate.isBefore(startDate)) {
+                    Toast.makeText(this, "La fecha de fin debe ser igual o posterior a la fecha de inicio.", Toast.LENGTH_SHORT).show()
+                } else {
+                    endDate = selectedDate
+                    endDateButton.text = "Fecha de Fin: $endDate"
+                    Log.d("TripFormActivity", "Fecha de Fin seleccionada: $endDate") // Log de la fecha de fin
+                }
             }
         }
 
@@ -79,7 +89,7 @@ class TripFormActivity : ComponentActivity() {
                 finish() // Cerrar la actividad
             } else {
                 Log.d("TripFormActivity", "Datos incompletos: $startDate, $endDate, $destination") // Log de error
-                // Aquí puedes usar un Toast o un SnackBar
+                Toast.makeText(this, "Por favor, completa todos los campos.", Toast.LENGTH_SHORT).show()
             }
         }
     }
