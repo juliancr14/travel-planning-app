@@ -17,11 +17,14 @@ import java.time.LocalDate
 import java.util.*
 
 class TripFormActivity : ComponentActivity() {
+
+    // Inicializamos las vistas que se utilizarán en la actividad
     private lateinit var startDateButton: Button
     private lateinit var endDateButton: Button
     private lateinit var destinationEditText: EditText
     private lateinit var createTripButton: Button
 
+    // Fechas de inicio y fin del viaje
     private var startDate: LocalDate? = null
     private var endDate: LocalDate? = null
 
@@ -36,30 +39,32 @@ class TripFormActivity : ComponentActivity() {
         destinationEditText = findViewById(R.id.destinationEditText)
         createTripButton = findViewById(R.id.createTripButton)
 
-        // Configurar botón para seleccionar fecha de inicio
+        // Configurar el botón para seleccionar la fecha de inicio
         startDateButton.setOnClickListener {
             showDatePicker { year, month, dayOfMonth ->
                 val selectedDate = LocalDate.of(year, month + 1, dayOfMonth)
+                // Validar que la fecha seleccionada no sea anterior a hoy
                 if (selectedDate.isBefore(LocalDate.now())) {
                     Toast.makeText(this, "La fecha de inicio no puede ser anterior a hoy.", Toast.LENGTH_SHORT).show()
                 } else {
                     startDate = selectedDate
                     startDateButton.text = "Fecha de Inicio: $startDate"
-                    Log.d("TripFormActivity", "Fecha de Inicio seleccionada: $startDate") // Log de la fecha de inicio
+                    Log.d("TripFormActivity", "Fecha de Inicio seleccionada: $startDate")
                 }
             }
         }
 
-        // Configurar botón para seleccionar fecha de fin
+        // Configurar el botón para seleccionar la fecha de fin
         endDateButton.setOnClickListener {
             showDatePicker { year, month, dayOfMonth ->
                 val selectedDate = LocalDate.of(year, month + 1, dayOfMonth)
+                // Validar que la fecha de fin sea igual o posterior a la fecha de inicio
                 if (startDate != null && selectedDate.isBefore(startDate)) {
                     Toast.makeText(this, "La fecha de fin debe ser igual o posterior a la fecha de inicio.", Toast.LENGTH_SHORT).show()
                 } else {
                     endDate = selectedDate
                     endDateButton.text = "Fecha de Fin: $endDate"
-                    Log.d("TripFormActivity", "Fecha de Fin seleccionada: $endDate") // Log de la fecha de fin
+                    Log.d("TripFormActivity", "Fecha de Fin seleccionada: $endDate")
                 }
             }
         }
@@ -68,19 +73,16 @@ class TripFormActivity : ComponentActivity() {
         createTripButton.setOnClickListener {
             val destination = destinationEditText.text.toString()
 
-            // Validar que los campos estén completos
+            // Validar que todos los campos estén completos
             if (startDate != null && endDate != null && destination.isNotEmpty()) {
                 val trip = Trip(
-                    id = (1..100).random(),
+                    id = (1..100).random(), // ID aleatorio para el viaje
                     startDate = startDate!!,
                     endDate = endDate!!,
                     destination = destination
                 )
-                // Log del destino y el viaje creado
-                Log.d("TripFormActivity", "salida: $startDate")
-                Log.d("TripFormActivity", "regreso: $endDate")
-                Log.d("TripFormActivity", "Destino: $destination")
-                Log.d("TripFormActivity", "Viaje creado: ${trip.id}")
+                // Log de la información del viaje creado
+                Log.d("TripFormActivity", "Salida: $startDate, Regreso: $endDate, Destino: $destination, Viaje creado: ${trip.id}")
 
                 // Devolver el objeto Trip a la actividad principal
                 val resultIntent = Intent()
@@ -88,7 +90,7 @@ class TripFormActivity : ComponentActivity() {
                 setResult(Activity.RESULT_OK, resultIntent)
                 finish() // Cerrar la actividad
             } else {
-                Log.d("TripFormActivity", "Datos incompletos: $startDate, $endDate, $destination") // Log de error
+                Log.d("TripFormActivity", "Datos incompletos: $startDate, $endDate, $destination")
                 Toast.makeText(this, "Por favor, completa todos los campos.", Toast.LENGTH_SHORT).show()
             }
         }
@@ -101,9 +103,10 @@ class TripFormActivity : ComponentActivity() {
         val month = calendar.get(Calendar.MONTH)
         val day = calendar.get(Calendar.DAY_OF_MONTH)
 
+        // Crear y mostrar el DatePicker
         DatePickerDialog(this, { _: DatePicker, selectedYear: Int, selectedMonth: Int, selectedDay: Int ->
             onDateSelected(selectedYear, selectedMonth, selectedDay)
-            Log.d("TripFormActivity", "Fecha seleccionada: $selectedYear-${selectedMonth + 1}-$selectedDay") // Log de la fecha seleccionada
+            Log.d("TripFormActivity", "Fecha seleccionada: $selectedYear-${selectedMonth + 1}-$selectedDay")
         }, year, month, day).show()
     }
 }

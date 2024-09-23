@@ -105,7 +105,7 @@ fun TripsScreen(
         // Campo de búsqueda
         Row(
             modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceBetween,
+            horizontalArrangement = Arrangement.Center,
             verticalAlignment = Alignment.CenterVertically
         ) {
             TextField(
@@ -113,9 +113,6 @@ fun TripsScreen(
                 onValueChange = onSearchQueryChange,
                 label = { Text("Destino") }
             )
-            Button(onClick = { /* Lógica de búsqueda adicional si es necesaria */ }) {
-                Text("Buscar")
-            }
         }
 
         Spacer(modifier = Modifier.height(16.dp))

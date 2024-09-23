@@ -24,7 +24,9 @@ class TripDetailsActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             ParcialAPPTheme {
+                // Obtener el objeto Trip pasado a través del Intent
                 val trip = intent.getSerializableExtra("trip") as Trip
+                // Mostrar la pantalla de detalles del viaje
                 TripDetailsScreen(trip = trip) { tripId ->
                     // Devolver el ID del viaje eliminado al MainActivity
                     val resultIntent = Intent().apply {
@@ -41,7 +43,7 @@ class TripDetailsActivity : ComponentActivity() {
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun TripDetailsScreen(trip: Trip, onTripDeleted: (Int) -> Unit) {
-    var showDialog by remember { mutableStateOf(false) }
+    var showDialog by remember { mutableStateOf(false) } // Estado para controlar el diálogo de eliminación
 
     Column(modifier = Modifier.padding(16.dp)) {
         Text(text = "Detalles del Viaje", style = MaterialTheme.typography.headlineMedium)
@@ -53,8 +55,9 @@ fun TripDetailsScreen(trip: Trip, onTripDeleted: (Int) -> Unit) {
         Text(text = "Duración: ${trip.tripDuration()} días")
         Spacer(modifier = Modifier.height(16.dp))
 
+        // Fila con botones para editar y eliminar el viaje
         Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
-            Button(onClick = { /* Editar viaje */ }) {
+            Button(onClick = { /* Lógica para editar viaje */ }) {
                 Text(text = "Editar")
             }
             Button(onClick = { showDialog = true }) {
@@ -63,6 +66,7 @@ fun TripDetailsScreen(trip: Trip, onTripDeleted: (Int) -> Unit) {
         }
     }
 
+    // Mostrar un diálogo de confirmación si showDialog es verdadero
     if (showDialog) {
         AlertDialog(
             onDismissRequest = { showDialog = false },
@@ -90,6 +94,7 @@ fun TripDetailsScreen(trip: Trip, onTripDeleted: (Int) -> Unit) {
 @Composable
 fun TripDetailsScreenPreview() {
     ParcialAPPTheme {
+        // Vista previa de la pantalla de detalles del viaje
         TripDetailsScreen(trip = Trip(id = 1, startDate = LocalDate.now(), endDate = LocalDate.now().plusDays(5), destination = "Ciudad Ejemplo")) { }
     }
 }
