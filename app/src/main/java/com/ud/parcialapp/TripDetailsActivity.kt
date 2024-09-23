@@ -45,6 +45,18 @@ fun TripDetailsScreen(trip: Trip) {
 
         // Aquí puedes añadir otros detalles del viaje
         // como la información de actividades y lugares
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
+            Button(onClick = { /* Editar button click handler */ }) {
+                Text(text = "Editar")
+            }
+
+            Button(onClick = { /* Eliminar button click handler */ }) {
+                Text(text = "Eliminar")
+            }
+        }
     }
 }
 
