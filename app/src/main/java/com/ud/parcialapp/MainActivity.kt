@@ -122,6 +122,15 @@
                             }
                         }
 
+                        val context = LocalContext.current
+                        Button(onClick = {
+                            val intent = Intent(context, TripDetailsActivity::class.java)
+                            intent.putExtra("trip", trip)
+                            tripLauncher.launch(intent)
+                        }) {
+                            Text("Ver Detalles")
+                        }
+
                         // Información adicional
                         Spacer(modifier = Modifier.height(8.dp))
                         Text(text = "Duración: ${trip.tripDuration()} días", style = MaterialTheme.typography.bodyMedium)
