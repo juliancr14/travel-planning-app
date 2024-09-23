@@ -1,6 +1,7 @@
 package com.ud.parcialapp
 
 import Trip
+import android.app.Activity
 import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -8,12 +9,14 @@ import androidx.activity.compose.setContent
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.ud.parcialapp.ui.theme.ParcialAPPTheme
 import java.time.LocalDate
+import android.content.Intent
+import androidx.compose.material3.AlertDialog
 
 class TripDetailsActivity : ComponentActivity() {
     @RequiresApi(Build.VERSION_CODES.O)
@@ -21,7 +24,15 @@ class TripDetailsActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             ParcialAPPTheme {
-                TripDetailsScreen(trip = intent.getSerializableExtra("trip") as Trip)
+                val trip = intent.getSerializableExtra("trip") as Trip
+                TripDetailsScreen(trip = trip) { tripId ->
+                    // Devolver el ID del viaje eliminado al MainActivity
+                    val resultIntent = Intent().apply {
+                        putExtra("deleted_trip_id", tripId)
+                    }
+                    setResult(Activity.RESULT_OK, resultIntent)
+                    finish() // Cerrar la actividad
+                }
             }
         }
     }
@@ -29,34 +40,48 @@ class TripDetailsActivity : ComponentActivity() {
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
-fun TripDetailsScreen(trip: Trip) {
+fun TripDetailsScreen(trip: Trip, onTripDeleted: (Int) -> Unit) {
+    var showDialog by remember { mutableStateOf(false) }
+
     Column(modifier = Modifier.padding(16.dp)) {
         Text(text = "Detalles del Viaje", style = MaterialTheme.typography.headlineMedium)
-
         Spacer(modifier = Modifier.height(16.dp))
-
         Text(text = "Destino: ${trip.destination.uppercase()}", style = MaterialTheme.typography.headlineSmall)
-
         Spacer(modifier = Modifier.height(8.dp))
-
         Text(text = "Fecha inicio: ${trip.startDate}")
         Text(text = "Fecha fin: ${trip.endDate}")
         Text(text = "Duración: ${trip.tripDuration()} días")
-
-        // Aquí puedes añadir otros detalles del viaje
-        // como la información de actividades y lugares
-
         Spacer(modifier = Modifier.height(16.dp))
 
         Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
-            Button(onClick = { /* Editar button click handler */ }) {
+            Button(onClick = { /* Editar viaje */ }) {
                 Text(text = "Editar")
             }
-
-            Button(onClick = { /* Eliminar button click handler */ }) {
+            Button(onClick = { showDialog = true }) {
                 Text(text = "Eliminar")
             }
         }
+    }
+
+    if (showDialog) {
+        AlertDialog(
+            onDismissRequest = { showDialog = false },
+            title = { Text("Confirmación") },
+            text = { Text("¿Está seguro de eliminar el viaje?") },
+            confirmButton = {
+                Button(onClick = {
+                    showDialog = false
+                    onTripDeleted(trip.id) // Llama a la función de eliminación
+                }) {
+                    Text("Sí")
+                }
+            },
+            dismissButton = {
+                Button(onClick = { showDialog = false }) {
+                    Text("No")
+                }
+            }
+        )
     }
 }
 
@@ -65,6 +90,6 @@ fun TripDetailsScreen(trip: Trip) {
 @Composable
 fun TripDetailsScreenPreview() {
     ParcialAPPTheme {
-        TripDetailsScreen(trip = Trip(id = 1, startDate = LocalDate.now(), endDate = LocalDate.now().plusDays(5), destination = "Ciudad Ejemplo"))
+        TripDetailsScreen(trip = Trip(id = 1, startDate = LocalDate.now(), endDate = LocalDate.now().plusDays(5), destination = "Ciudad Ejemplo")) { }
     }
 }
